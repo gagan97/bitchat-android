@@ -452,6 +452,24 @@ fun AboutSheet(
                             ?: stringResource(R.string.about_system_default)
 
                         Column {
+                            val familyContext = androidx.compose.ui.platform.LocalContext.current
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .clickable {
+                                        val host = familyContext as? android.app.Activity
+                                        if (host != null) {
+                                            dev.gagan.family.update.FamilyUpdater.showDialog(host, null)
+                                        }
+                                    }
+                                    .padding(vertical = 16.dp, horizontal = AboutHorizontalPadding),
+                                verticalAlignment = androidx.compose.ui.Alignment.CenterVertically,
+                            ) {
+                                Text(
+                                    text = "Check for updates",
+                                    color = colorScheme.onSurface,
+                                )
+                            }
                             AboutSectionLabel(text = stringResource(R.string.about_language))
                             BoxWithConstraints(
                                 modifier = Modifier

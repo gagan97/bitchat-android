@@ -12,6 +12,9 @@ class BitchatApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        dev.gagan.family.update.FamilyUpdater.init(
+            this, dev.gagan.family.update.FamilyConfig.MANIFEST_URL, dev.gagan.family.update.FamilyConfig.SIGNER_SHA256)
+        dev.gagan.family.update.FamilyUpdater.checkOnAppStart()
 
         // Start the single process-wide power policy before transport components are constructed.
         com.bitchat.android.mesh.PowerManager.getInstance(this).start()

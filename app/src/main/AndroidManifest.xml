@@ -74,6 +74,8 @@
         android:name="com.bitchat.android.permission.FORCE_FINISH"
         android:protectionLevel="signature" />
 
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
     <application
         android:name=".BitchatApplication"
         android:allowBackup="false"
@@ -167,5 +169,15 @@
             android:name="androidx.work.impl.foreground.SystemForegroundService"
             android:foregroundServiceType="dataSync"
             tools:node="merge" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.familyupdates"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/family_update_paths" />
+        </provider>
     </application>
 </manifest>
